@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Models\Show\Show;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $shows = Show::select()->orderBy('id', 'desc')->take(4)->get();
+
+        $trendingShows = Show::select()->orderBy('name', 'desc')->take(6)->get();
+
+        $trendingAdventure = Show::where('genre', 'LIKE', '%Adventure%')->orderBy('id', 'desc')->take(6)->get();
+
+        $recentShows = Show::select()->orderBy('id', 'desc')->take(6)->get();
+
+        return view('home', compact('shows', 'trendingShows', 'trendingAdventure', 'recentShows')); // Note the change here
     }
 }

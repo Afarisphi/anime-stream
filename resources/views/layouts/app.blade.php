@@ -10,6 +10,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
@@ -96,7 +99,7 @@
         <!-- Header Section Begin -->
         <header class="header">
             <div class="container">
-                <div class="row">
+                <div class="row d-flex">
                     <div class="col-lg-2">
                         <div class="header__logo">
                             <a href="{{ url('/') }}">
@@ -108,7 +111,7 @@
                         <div class="header__nav">
                             <nav class="header__menu mobile-menu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Homepage</a></li>
+                                    <li class="active"><a href="{{ url('/') }}">Homepage</a></li>
                                     <li><a href="./categories.html">Categories <span
                                                 class="arrow_carrot-down"></span></a>
                                         <ul class="dropdown">
@@ -123,17 +126,16 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-2">
-                        <div class="header__right">
-                            <ul>
+                    <div class="col-lg-2 d-flex align-items-center">
+                        <div class="header__right d-flex align-items-center justify-content-end">
+                            <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                            <ul class="d-flex align-items-center ml-3">
                                 @guest
-
                                     @if (Route::has('login'))
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                         </li>
                                     @endif
-
                                     @if (Route::has('register'))
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -146,14 +148,12 @@
                                             aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
                                         </a>
-
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                         document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
-
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                 class="d-none">
                                                 @csrf
@@ -162,14 +162,20 @@
                                     </li>
                                 @endguest
                             </ul>
-                            <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                            {{-- <a href="./login.html"><span class="icon_profile"></span></a> --}}
+                        </div>
+                    </div>
+                    <div class="search-model">
+                        <div class="h-100 d-flex align-items-center justify-content-center">
+
+                            <div class="search-close-switch"><i class="icon_close"></i></div>
+                            <form class="search-model-form">
+                                <input type="text" id="search-input" placeholder="Search here.....">
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div id="mobile-menu-wrap"></div>
-            </div>
         </header>
+
         <!-- Header End -->
 
         <main class="py-4">
@@ -178,7 +184,7 @@
     </div>
 
     <!-- Footer Section Begin -->
-    <footer class="footer">
+    <footer class="footer" style="margin-top: -30px">
         <div class="page-up">
             <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
         </div>
@@ -197,7 +203,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                {{-- <div class="col-lg-3">
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
                         <script>
@@ -208,20 +214,13 @@
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </footer>
     <!-- Footer Section End -->
 
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
+
 
     <!-- Js Plugins -->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
