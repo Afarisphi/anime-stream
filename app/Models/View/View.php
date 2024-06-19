@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Models\Comment;
+namespace App\Models\View;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class View extends Model
 {
     use HasFactory;
 
-    protected $table = 'comments';
+    protected $table = 'views';
+
     protected $fillable = [
         "show_id",
-        "username",
-        "image",
-        "comment"
-
+        "user_id"
     ];
 
     public $timestamps = true;

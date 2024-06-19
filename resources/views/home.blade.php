@@ -71,9 +71,9 @@
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg"
                                             data-setbg="{{ asset('assets/img/' . $show->image . '') }}">
-                                            {{-- <div class="ep">18 / 18</div>
-                                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                            <div class="view"><i class="fa fa-eye"></i> 9141</div> --}}
+                                            <div class="ep">18 / 18</div>
+                                            {{-- <div class="comment"><i class="fa fa-comments"></i> {{ $numberComments }}</div>
+                                            <div class="view"><i class="fa fa-eye"></i> {{ $numberViews }}</div> --}}
                                         </div>
                                         <div class="product__item__text">
                                             <ul>
@@ -109,9 +109,9 @@
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg"
                                             data-setbg="{{ asset('assets/img/' . $show->image . '') }}">
-                                            {{-- <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div> --}}
+                                            <div class="ep">18 / 18</div>
+                                            {{-- <div class="comment"><i class="fa fa-comments"></i> {{ $numberComments }}</div>
+                                            <div class="view"><i class="fa fa-eye"></i> {{ $numberViews }}</div> --}}
                                         </div>
                                         <div class="product__item__text">
                                             <ul>
@@ -147,9 +147,9 @@
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg"
                                             data-setbg="{{ asset('assets/img/' . $show->image . '') }}" alt="">
-                                            {{-- <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div> --}}
+                                            <div class="ep">18 / 18</div>
+                                            {{-- <div class="comment"><i class="fa fa-comments"></i> {{ $numberComments }}</div>
+                                            <div class="view"><i class="fa fa-eye"></i> {{ $numberViews }}</div> --}}
                                         </div>
                                         <div class="product__item__text">
                                             <ul>
@@ -299,8 +299,8 @@
                                         <li>{{ $show->status }}</li>
                                         <li>{{ $show->type }}</li>
                                     </ul>
-                                    <h5><a href="#">{{ $show->name }}</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                                    <h5><a href="{{ route('anime.details', $show->id) }}">{{ $show->name }}</a></h5>
+                                    {{-- <span><i class="fa fa-eye"></i> {{ $numberViews }} Viewes</span> --}}
                                 </div>
                             </div>
                         @endforeach
