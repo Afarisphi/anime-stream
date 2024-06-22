@@ -33,8 +33,8 @@
                                     <div class="label">{{ $show->genre }}</div>
                                     <h2>{{ $show->name }}</h2>
                                     <p>{{ implode(' ', array_slice(str_word_count($show->description, 1), 0, 25)) }}</p>
-                                    <a href="anime-watching.html"><span>Watch Now</span> <i
-                                            class="fa fa-angle-right"></i></a>
+                                    <a href="{{ route('anime.watching', ['show_id' => $show->id, 'episode_id' => 1]) }}"><span>Watch
+                                            Now</span> <i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>

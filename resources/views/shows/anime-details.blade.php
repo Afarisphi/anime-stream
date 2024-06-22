@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
+                        <a href="">Categories</a>
                         <span>{{ $show->genre }}</span>
                     </div>
                 </div>
@@ -48,7 +48,6 @@
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
                                             <li><span>Genre:</span>{{ $show->genre }}</li>
-
                                             <li><span>Duration:</span> {{ $show->duration }}</li>
                                             <li><span>Quality:</span> {{ $show->quality }}</li>
                                             <li><span>Views:</span> {{ $numberViews }}</li>

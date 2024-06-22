@@ -28,13 +28,16 @@
     <link rel="stylesheet" href="{{ asset('assets/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
 
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+
 </head>
 
 <body>
@@ -99,50 +102,54 @@
         <!-- Header Section Begin -->
         <header class="header">
             <div class="container">
-                <div class="row d-flex">
-                    <div class="col-lg-2">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-6">
                         <div class="header__logo">
                             <a href="{{ url('/') }}">
                                 <img src="{{ asset('assets/img/logo.png') }}" alt="">
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 d-none d-lg-block">
                         <div class="header__nav">
-                            <nav class="header__menu mobile-menu">
+                            <nav class="header__menu">
                                 <ul>
                                     <li class="active"><a href="{{ url('/') }}">Homepage</a></li>
-                                    <li><a href="./categories.html">Categories <span
-                                                class="arrow_carrot-down"></span></a>
+                                    <li class="has-dropdown">
+                                        <a href="#">Categories <span class="arrow_carrot-down"></span></a>
                                         <ul class="dropdown">
-                                            <li><a href="./categories.html">Romance</a></li>
-                                            <li><a href="./categories.html">Adventure </a></li>
-                                            <li><a href="./categories.html">Magic</a></li>
-                                            <li><a href="./categories.html">Fantasy</a></li>
+                                            @foreach ($categories as $category)
+                                                <li><a
+                                                        href="{{ route('anime.category', $category->name) }}">{{ $category->name }}</a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
-
-                    <div class="col-lg-2 d-flex align-items-center">
-                        <div class="header__right d-flex align-items-center justify-content-end">
-                            <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                            <ul class="d-flex align-items-center ml-3">
+                    <div class="col-lg-2 col-6 d-flex align-items-center justify-content-end">
+                        <div class="header__right d-flex align-items-center">
+                            <form method="POST" action="{{ route('anime.search.shows') }}" class="form-inline">
+                                @csrf
+                                <input class="form-control" type="search" name="show" placeholder="Search"
+                                    aria-label="Search">
+                            </form>
+                            <ul class="d-flex align-items-center">
                                 @guest
                                     @if (Route::has('login'))
-                                        <li class="nav-item">
+                                        <div>
                                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                        </li>
+                                        </div>
                                     @endif
                                     @if (Route::has('register'))
-                                        <li class="nav-item">
+                                        {{-- <div>
                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                        </li>
+                                        </div> --}}
                                     @endif
                                 @else
-                                    <li class="nav-item dropdown">
+                                    <div class="dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
                                             role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" v-pre>
@@ -150,8 +157,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -159,22 +165,16 @@
                                                 @csrf
                                             </form>
                                         </div>
-                                    </li>
+                                    </div>
                                 @endguest
                             </ul>
                         </div>
                     </div>
-                    <div class="search-model">
-                        <div class="h-100 d-flex align-items-center justify-content-center">
-
-                            <div class="search-close-switch"><i class="icon_close"></i></div>
-                            <form class="search-model-form">
-                                <input type="text" id="search-input" placeholder="Search here.....">
-                            </form>
-                        </div>
-                    </div>
                 </div>
+            </div>
+
         </header>
+
 
         <!-- Header End -->
 
@@ -192,14 +192,14 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="{{ route('home') }}"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li class="active"><a href="./index.html">Homepage</a></li>
-                            <li><a href="./categories.html">Categories</a></li>
+                            <li class="active"><a href="{{ route('home') }}">Homepage</a></li>
+                            <li> <a href="">Categories</a></li>
                         </ul>
                     </div>
                 </div>
@@ -231,6 +231,9 @@
     <script src="{{ asset('assets/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

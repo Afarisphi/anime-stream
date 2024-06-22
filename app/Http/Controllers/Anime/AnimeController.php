@@ -85,4 +85,25 @@ class AnimeController extends Controller
 
         return view('shows.anime-watching', compact('show', 'episode', 'episodes', 'comments'));
     }
+
+    public function category($category_name)
+    {
+        $shows = Show::where('genre', 'LIKE', '%' . $category_name . '%')->get();
+
+        $forYouShows = Show::select()->orderBy('name', 'asc')->take(4)->get();
+
+
+        return view('shows.category', compact('shows', 'category_name', 'forYouShows'));
+    }
+
+    public function searchShows(Request $request)
+    {
+        $show = $request->get('show');
+
+        $searches = Show::where('name', 'like', "%$show%")->orWhere('genre', 'like', "%$show%")->get();
+
+        $forYouShows = Show::select()->orderBy('name', 'asc')->take(4)->get();
+
+        return view('shows.searches', compact('searches', 'forYouShows'));
+    }
 }
