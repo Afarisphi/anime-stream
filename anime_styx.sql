@@ -14,6 +14,20 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Dumping structure for table anime_styx.categories
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table anime_styx.categories: ~0 rows (approximately)
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+	(2, 'Action', '2024-06-22 06:22:39', '2024-06-22 06:22:41'),
+	(3, 'Magic', '2024-06-22 06:23:11', '2024-06-22 06:23:11');
+
 -- Dumping structure for table anime_styx.comments
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -24,9 +38,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table anime_styx.comments: ~1 rows (approximately)
+-- Dumping data for table anime_styx.comments: ~7 rows (approximately)
 INSERT INTO `comments` (`id`, `show_id`, `username`, `image`, `comment`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'styx', 'logo.png', 'Lorem ipsum dolor sit amet consectetur adipiscing elit libero himenaeos, urna quisque primis curae quis platea orci cras, volutpat class lobortis nisi suspendisse nam maecenas blandit. Fringilla est duis mi enim ornare proin', '2024-06-18 07:30:33', '2024-06-18 07:31:55'),
 	(9, 2, 'styx', 'logo.png', 'Hello', '2024-06-19 02:31:33', '2024-06-19 02:31:33'),
@@ -34,7 +48,8 @@ INSERT INTO `comments` (`id`, `show_id`, `username`, `image`, `comment`, `create
 	(11, 1, 'styx', 'logo.png', 'Uhuy', '2024-06-19 02:36:55', '2024-06-19 02:36:55'),
 	(12, 1, 'styx', 'logo.png', 'Hello', '2024-06-19 02:39:47', '2024-06-19 02:39:47'),
 	(13, 1, 'styx', 'logo.png', 'Hello', '2024-06-19 02:40:00', '2024-06-19 02:40:00'),
-	(14, 1, 'styx', 'logo.png', 'styx', '2024-06-19 02:40:07', '2024-06-19 02:40:07');
+	(14, 1, 'styx', 'logo.png', 'styx', '2024-06-19 02:40:07', '2024-06-19 02:40:07'),
+	(15, 1, 'styx', 'logo.png', 'Cahyan', '2024-06-20 07:44:20', '2024-06-20 07:44:20');
 
 -- Dumping structure for table anime_styx.episodes
 CREATE TABLE IF NOT EXISTS `episodes` (
@@ -48,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `episodes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table anime_styx.episodes: ~0 rows (approximately)
+-- Dumping data for table anime_styx.episodes: ~2 rows (approximately)
 INSERT INTO `episodes` (`id`, `show_id`, `episode_name`, `video`, `thumbnail`, `created_at`, `updated_at`) VALUES
 	(1, 1, '1', '1.mp4', 'anime-watch.jpg', '2024-06-19 08:02:56', '2024-06-19 09:34:35'),
 	(2, 1, '2', '2.mp4', 'hero-1.jpg', '2024-06-19 08:03:24', '2024-06-19 09:34:33'),
@@ -177,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `views` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table anime_styx.views: ~0 rows (approximately)
+-- Dumping data for table anime_styx.views: ~4 rows (approximately)
 INSERT INTO `views` (`id`, `show_id`, `user_id`, `created_at`, `updated_at`) VALUES
 	(1, 2, 1, '2024-06-18 20:30:45', '2024-06-18 20:30:45'),
 	(2, 1, 1, '2024-06-18 20:36:15', '2024-06-18 20:36:15'),
