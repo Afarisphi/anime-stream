@@ -3,7 +3,8 @@
 Anime Streaming Example
 
 ## System Requirement
-
+PHP 8.3.8
+NodeJs 20.14.0
 
 ## Instalasi
 
