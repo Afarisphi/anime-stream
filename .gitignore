@@ -16,3 +16,18 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Ignore video files
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.wmv
+
+# Ignore image files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.svg
